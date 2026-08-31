@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Recipe Box</title>
+<meta name="description" content="A small home for the recipes we actually cook." />
+<meta name="color-scheme" content="light dark" />
+<meta name="theme-color" content="#fbf7f0" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥘</text></svg>" />
+<link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#/" aria-label="The Recipe Box — home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="3" y="8" width="26" height="19" rx="2.5" />
+        <path d="M3 13h26M11 8V5.5h10V8" />
+      </svg>
+      <span class="brand-text">The Recipe&nbsp;Box</span>
+    </a>
+
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      <input id="search" type="search" placeholder="Search recipes or ingredients…" autocomplete="off" aria-label="Search recipes" />
+      <kbd class="search-kbd">/</kbd>
+    </div>
+
+    <div class="topbar-actions">
+      <button id="add-recipe" class="btn btn-primary btn-compact" type="button">
+        <span aria-hidden="true">+</span><span class="btn-label">Add recipe</span>
+      </button>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch between light and dark">
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button id="settings" class="icon-btn" type="button" aria-label="Backup and settings">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 12h3M11 12h9M4 17h8M16 17h4"/><circle cx="16" cy="7" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="14" cy="17" r="2"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- Library -->
+  <section id="view-library" class="view">
+    <div class="page">
+      <div class="lede">
+        <h1>Recipes we actually cook</h1>
+        <p id="library-sub">Instant Pot dinners, weekend breakfasts and the easy bakes.</p>
+      </div>
+
+      <div class="filters" role="region" aria-label="Filters">
+        <div class="filter-row" id="filter-quick"></div>
+        <div class="filter-row" id="filter-category"></div>
+        <div class="filter-row" id="filter-tags"></div>
+        <div class="filter-row filter-row-end">
+          <label class="sort">
+            <span>Sort</span>
+            <select id="sort">
+              <option value="title">A–Z</option>
+              <option value="recent">Recently cooked</option>
+              <option value="most">Most cooked</option>
+              <option value="quick">Quickest first</option>
+            </select>
+          </label>
+          <button id="clear-filters" class="link-btn" type="button" hidden>Clear filters</button>
+        </div>
+      </div>
+
+      <p id="result-count" class="result-count" role="status"></p>
+      <div id="cards" class="cards"></div>
+      <p id="empty" class="empty" hidden>Nothing matches that. <button class="link-btn" type="button" data-clear>Clear the filters</button></p>
+    </div>
+  </section>
+
+  <!-- Single recipe -->
+  <section id="view-recipe" class="view" hidden></section>
+</main>
+
+<footer class="footer">
+  <div class="page">
+    <p>Kept on this device. <button class="link-btn" type="button" data-open-settings>Export a backup</button> now and then.</p>
+  </div>
+</footer>
+
+<dialog id="dialog" class="dialog"></dialog>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
