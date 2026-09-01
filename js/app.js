@@ -209,7 +209,14 @@ function card(r) {
     if (filters.favourites) renderLibrary();
   });
 
-  a.append(fav, kicker, h, p, tags, meta);
+  const art = picture(r, 'card', { ratio: 4 / 3 });
+  if (art) a.classList.add('card-with-art');
+
+  const text = document.createElement('div');
+  text.className = 'card-text';
+  text.append(kicker, h, p, tags, meta);
+
+  a.append(fav, ...(art ? [art] : []), text);
   return a;
 }
 
@@ -217,6 +224,31 @@ function metaItem(icon, text) {
   const s = document.createElement('span');
   s.append(icon + ' ' + text);
   return s;
+}
+
+/* ------------------------------------------------------------------ *
+ * Artwork
+ *
+ * Each picture carries its own background colour (`tone`), which we paint
+ * behind it. That means the artwork is never cropped — it is letterboxed onto
+ * a backdrop it already matches, so the seam does not read as one.
+ * ------------------------------------------------------------------ */
+
+function picture(r, size, { ratio } = {}) {
+  if (!r.image) return null;
+  const frame = document.createElement('div');
+  frame.className = `art art-${size}`;
+  frame.style.setProperty('--tone', r.image.tone);
+  if (ratio) frame.style.aspectRatio = String(ratio);
+  else frame.style.aspectRatio = String(r.image.ratio);
+
+  const img = document.createElement('img');
+  img.src = `img/${r.image.src}-${size}.webp`;
+  img.alt = r.image.alt ?? '';
+  img.loading = size === 'card' ? 'lazy' : 'eager';
+  img.decoding = 'async';
+  frame.append(img);
+  return frame;
 }
 
 /* ------------------------------------------------------------------ *
@@ -269,7 +301,13 @@ function renderRecipe(r) {
     tags.append(s);
   });
 
-  head.append(kicker, h1, blurb, facts, tags);
+  const headText = document.createElement('div');
+  headText.className = 'recipe-head-text';
+  headText.append(kicker, h1, blurb, facts, tags);
+
+  const hero = picture(r, 'hero');
+  if (hero) head.classList.add('has-art');
+  head.append(headText, ...(hero ? [hero] : []));
 
   // --- tools --------------------------------------------------------
   const tools = document.createElement('div');

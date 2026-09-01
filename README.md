@@ -18,6 +18,11 @@ just files, which is why it runs unchanged on GitHub Pages.
 
 ## What it does
 
+- **Artwork** — each recipe has its own illustration, on the card and as a hero
+  on the recipe page. Each picture carries `tone`, a colour sampled from its own
+  border, which is painted behind it — so the artwork is letterboxed onto a
+  backdrop it already matches instead of being cropped to a common shape. That
+  is how the dark flat-lays and the pale watercolours share one grid.
 - **Library** — search across titles, ingredients, steps *and your own notes*.
   Filter by favourites, Instant Pot, kid friendly, easy, under 30 min, category
   and any tag. Sort A–Z, recently cooked, most cooked or quickest first.
@@ -112,12 +117,31 @@ pressure cook 15 min | 1-11
 | `index.html` | The shell — top bar, library section, recipe section |
 | `css/app.css` | Everything visual, light and dark, plus print styles |
 | `js/data/recipes.js` | The recipes |
+| `img/` | Web-sized WebP artwork (built — do not edit by hand) |
+| `tools/build-images.py` | Turns `IMAGES/*.png` into `img/*.webp` |
 | `js/grid.js` | Column solver + grid renderer |
 | `js/scale.js` | Quantity scaling and fraction formatting |
 | `js/store.js` | Notes, favourites, cook log, custom recipes (localStorage) |
 | `js/app.js` | Routing, library, recipe page, dialogs |
 | `server/serve-recipes.js` | Static file server on port 4660 |
 | `Favourite Recent Recipes Collection.txt` | The original source text, untouched |
+
+## Artwork
+
+Full-size originals live in `IMAGES/` — around 2 MB each, which is far too heavy
+to send to a phone, so they are **not committed**. The site uses WebP built from
+them:
+
+```bash
+python3 tools/build-images.py
+```
+
+That writes `img/<recipe-id>-card.webp` (720 px) and `-hero.webp` (1200 px),
+samples each picture's border colour, and prints the `image:` block to paste
+into `js/data/recipes.js`. Add a new picture to `IMAGES/`, add a line to
+`MAPPING` at the top of the script, and re-run it.
+
+Artwork is hidden when printing — a near-black flat-lay is not worth the toner.
 
 ## A note on where things are kept
 

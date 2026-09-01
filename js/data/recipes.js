@@ -11,6 +11,11 @@
 //   prep        : [ "..." ]            full-width rows across the top of the grid
 //   grid        : [{ label, from, to }]  from/to are ingredient indexes (0-based,
 //                                        inclusive)
+//   image       : { src, ratio, tone, alt }
+//                 `src` names img/<src>-card.webp and -hero.webp; `tone` is the
+//                 artwork's own background colour, used as the backdrop so the
+//                 picture never has to be cropped. Run tools/build-images.py to
+//                 generate all four values from a PNG in IMAGES/.
 //
 // To add a recipe: copy the shape below, append it to RECIPES. Anything you add
 // through the app's "Add recipe" button lives in your browser instead, and can be
@@ -19,6 +24,8 @@
 export const RECIPES = [
   {
     id: 'ip-beef-pot-roast',
+    image: { src: 'ip-beef-pot-roast', ratio: 1.250, tone: '#1a1916',
+      alt: 'Overhead illustration of the pot roast in its pot, with a bowl of gravy, cracked pepper and sprigs of thyme alongside.' },
     title: 'Instant Pot Beef Pot Roast',
     blurb:
       'A hearty pressure-cooker meal featuring tender beef chuck that pulls apart easily, simmered alongside vegetables in an enriched stock base.',
@@ -72,6 +79,8 @@ export const RECIPES = [
 
   {
     id: 'ip-chicken-noodle-soup',
+    image: { src: 'ip-chicken-noodle-soup', ratio: 1.223, tone: '#1a1916',
+      alt: 'Overhead illustration of a pot of chicken noodle soup with a filled bowl and fresh parsley beside it.' },
     title: 'Instant Pot Chicken Noodle Soup',
     blurb:
       'Comforting homemade chicken soup cooked rapidly under pressure, finished with fresh lemon and egg noodles.',
@@ -122,6 +131,8 @@ export const RECIPES = [
 
   {
     id: 'lentil-soup',
+    image: { src: 'lentil-soup', ratio: 1.250, tone: '#1e1c19',
+      alt: 'Overhead illustration of a pot of lentil soup with a bowl, lemon and greens laid out around it.' },
     title: 'Hearty Lentil Soup',
     blurb:
       'A nutrient-packed, wholesome soup built on brown lentils, warm aromatics, tomatoes, and tender greens.',
@@ -171,6 +182,8 @@ export const RECIPES = [
 
   {
     id: 'banana-pancakes',
+    image: { src: 'banana-pancakes', ratio: 1.000, tone: '#fbf0e1',
+      alt: 'Watercolour illustration of a stack of banana pancakes on a green cloth, with sliced banana and syrup.' },
     title: 'Banana Pancakes',
     blurb: 'Quick and naturally sweet pancakes perfect for using ripe bananas on weekend mornings.',
     category: 'Breakfast',
@@ -212,6 +225,8 @@ export const RECIPES = [
 
   {
     id: 'banana-waffles',
+    image: { src: 'banana-waffles', ratio: 1.000, tone: '#faeddc',
+      alt: 'Watercolour illustration of golden banana waffles with sliced banana.' },
     title: 'Banana Waffles',
     blurb: 'Crispy on the outside and fluffy inside with natural sweetness and aromatic cinnamon.',
     category: 'Breakfast',
@@ -257,6 +272,8 @@ export const RECIPES = [
 
   {
     id: 'oatmeal-cookies',
+    image: { src: 'oatmeal-cookies', ratio: 1.250, tone: '#1b1a17',
+      alt: 'Overhead illustration of chewy oatmeal cookies scattered on a dark surface with rolled oats.' },
     title: 'Classic Chewy Oatmeal Cookies',
     blurb: 'Buttery, cinnamon-spiced oatmeal cookies with lightly crisp edges and soft, chewy centres.',
     category: 'Baking',
@@ -305,6 +322,8 @@ export const RECIPES = [
 
   {
     id: 'flatbread',
+    image: { src: 'flatbread', ratio: 1.250, tone: '#201e19',
+      alt: 'Overhead illustration of a stack of charred homemade flatbreads with a cloth and flour.' },
     title: 'Simple Homemade Flatbread',
     blurb: 'A pliable four-ingredient flatbread that rolls thin and stays soft for wraps, burritos, or dipping.',
     category: 'Breads',
@@ -346,6 +365,8 @@ export const RECIPES = [
 
   {
     id: 'yoghurt-flatbread',
+    image: { src: 'yoghurt-flatbread', ratio: 1.000, tone: '#fcf3e5',
+      alt: 'Watercolour illustration of puffed yoghurt flatbreads brushed with garlic butter and parsley.' },
     title: '2-Ingredient Greek Yoghurt Flatbread',
     blurb: 'A quick stovetop flatbread with no resting time required, yielding a pillowy, naan-like crumb.',
     category: 'Breads',

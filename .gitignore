@@ -1,1 +1,5 @@
 .DS_Store
+
+# Full-size artwork originals (~2 MB each) — the site ships the WebP in img/,
+# built by tools/build-images.py
+IMAGES/

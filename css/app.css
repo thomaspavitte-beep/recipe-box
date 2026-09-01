@@ -185,6 +185,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: relative; display: flex; flex-direction: column; gap: .55rem;
   color: inherit; text-decoration: none;
   padding: 1.05rem 1.1rem 1.1rem; text-align: left;
+  overflow: hidden;
   background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius);
   box-shadow: var(--shadow); cursor: pointer;
   transition: transform .16s cubic-bezier(.2,.7,.3,1), box-shadow .16s, border-color .16s;
@@ -216,6 +217,58 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .cooked-badge { color: var(--flag); font-weight: 500; }
 
 .empty { text-align: center; color: var(--muted); padding: 3rem 0; }
+
+/* ------------------------------------------------------------------ *
+ * Artwork
+ *
+ * Every picture sits on `--tone`, sampled from its own border, so it can be
+ * letterboxed rather than cropped and still look full-bleed. That is what lets
+ * the dark flat-lays and the pale watercolours share a grid without either
+ * being trimmed to fit.
+ * ------------------------------------------------------------------ */
+
+.art {
+  position: relative;
+  background: var(--tone, var(--paper-2));
+  overflow: hidden;
+}
+.art img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+/* A hairline in the ink colour keeps pale artwork from bleeding into paper. */
+.art::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(35, 32, 28, .09);
+}
+:root[data-theme="dark"] .art::after { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .07); }
+
+/* Card: full-bleed panel across the top, sharing the card's rounded corners. */
+.card-with-art { padding-top: 0; padding-inline: 0; gap: 0; }
+.card-with-art .art-card {
+  margin: -1px -1px 0;         /* tuck under the card border */
+  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
+}
+.card-with-art .art-card::after { border-radius: inherit; }
+.card-with-art .art-card img { transition: scale .35s cubic-bezier(.2,.7,.3,1); }
+.card-with-art:hover .art-card img { scale: 1.035; }
+.card-text {
+  display: flex; flex-direction: column; gap: .55rem; flex: 1 1 auto;
+  padding: .95rem 1.1rem 1.05rem;
+}
+
+/* Recipe page: the hero sits beside the title on a wide screen. */
+.recipe-head.has-art {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+  gap: 2rem; align-items: center;
+}
+.recipe-head-text { display: grid; gap: .7rem; align-content: start; }
+.art-hero { border-radius: var(--radius); box-shadow: var(--shadow); }
+.art-hero::after { border-radius: inherit; }
+
+@media (max-width: 860px) {
+  .recipe-head.has-art { grid-template-columns: 1fr; gap: 1.2rem; }
+  .recipe-head.has-art .art-hero { order: -1; max-height: 46vh; }
+  .art-hero img { object-fit: contain; }
+}
 
 /* ------------------------------------------------------------------ *
  * Recipe page
@@ -352,7 +405,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .cook-mode .ing-list li { padding-block: .6rem; font-size: 1.02rem; }
 .cook-mode .step-list { gap: 1.3rem; }
 .cook-mode .step-list li { font-size: 1.06rem; }
-.cook-mode .recipe-blurb, .cook-mode .notes { display: none; }
+.cook-mode .recipe-blurb, .cook-mode .notes, .cook-mode .art-hero { display: none; }
 .cook-badge { display: inline-flex; align-items: center; gap: .35rem; font-size: .8rem; color: var(--flag); }
 
 /* ------------------------------------------------------------------ *
@@ -433,7 +486,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
  * ------------------------------------------------------------------ */
 
 @media print {
-  .topbar, .footer, .recipe-tools, .back-link, .notes textarea, .skip { display: none !important; }
+  .topbar, .footer, .recipe-tools, .back-link, .notes textarea, .skip,
+  .art { display: none !important; }
   body { background: #fff; color: #000; font-size: 11pt; }
   .view { padding: 0; }
   .recipe-body { grid-template-columns: 1fr 1.6fr; gap: 1.5rem; }
