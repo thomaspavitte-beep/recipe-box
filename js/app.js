@@ -39,7 +39,7 @@ function totalMin(r) {
 
 function haystack(r) {
   return [
-    r.title, r.blurb, r.category, r.method, r.appliance,
+    r.title, r.blurb, r.category, r.method, r.appliance, r.source,
     ...(r.tags ?? []),
     ...(r.ingredients ?? []).map((i) => i.text),
     ...(r.steps ?? []),
@@ -301,9 +301,13 @@ function renderRecipe(r) {
     tags.append(s);
   });
 
+  const credit = document.createElement('p');
+  credit.className = 'recipe-source';
+  credit.textContent = r.source ? `From ${r.source}` : '';
+
   const headText = document.createElement('div');
   headText.className = 'recipe-head-text';
-  headText.append(kicker, h1, blurb, facts, tags);
+  headText.append(kicker, h1, blurb, ...(r.source ? [credit] : []), facts, tags);
 
   const hero = picture(r, 'hero');
   if (hero) head.classList.add('has-art');

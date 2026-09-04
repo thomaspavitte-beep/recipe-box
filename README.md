@@ -55,6 +55,7 @@ the collection proper, add it to [`js/data/recipes.js`](js/data/recipes.js):
   id: 'sausage-pasta-bake',          // unique, used in the URL
   title: 'Sausage Pasta Bake',
   blurb: 'One sentence about it.',
+  source: 'Where it came from',       // optional, credited under the blurb
   category: 'Mains',                  // becomes a filter chip
   method: 'Oven',
   appliance: 'Oven (200°C)',
@@ -139,7 +140,8 @@ python3 tools/build-images.py
 That writes `img/<recipe-id>-card.webp` (720 px) and `-hero.webp` (1200 px),
 samples each picture's border colour, and prints the `image:` block to paste
 into `js/data/recipes.js`. Add a new picture to `IMAGES/`, add a line to
-`MAPPING` at the top of the script, and re-run it.
+`MAPPING` at the top of the script, and re-run it. Recipes without a picture are
+fine — the card simply starts at the title.
 
 Artwork is hidden when printing — a near-black flat-lay is not worth the toner.
 

@@ -11,6 +11,8 @@
 //   prep        : [ "..." ]            full-width rows across the top of the grid
 //   grid        : [{ label, from, to }]  from/to are ingredient indexes (0-based,
 //                                        inclusive)
+//   source      : "..."                where the recipe came from, credited under
+//                                      the blurb (optional)
 //   image       : { src, ratio, tone, alt }
 //                 `src` names img/<src>-card.webp and -hero.webp; `tone` is the
 //                 artwork's own background colour, used as the backdrop so the
@@ -233,7 +235,7 @@ export const RECIPES = [
     method: 'Waffle iron',
     appliance: 'Waffle Iron',
     highlight: 'Crisp exterior, whipped egg whites',
-    tags: ['kid friendly', 'vegetarian', 'weekend'],
+    tags: ['kid friendly', 'vegetarian', 'weekend', 'no added sugar'],
     servings: 4,
     prepMin: 15,
     cookMin: 20,
@@ -246,28 +248,30 @@ export const RECIPES = [
       { text: '1.5 cups (225 g) plain flour' },
       { text: '2 tsp baking powder' },
       { text: '1/2 tsp ground cinnamon' },
-      { text: '2 tbsp brown sugar' },
       { text: 'Pinch of salt' },
       { text: '2 large egg whites' },
     ],
     prep: ['Preheat the waffle iron and lightly grease it'],
     grid: [
       { label: 'combine', from: 0, to: 4 },
-      { label: 'whisk', from: 5, to: 9 },
-      { label: 'beat to\nsoft peaks', from: 10, to: 10 },
-      { label: 'stir together\njust until combined', from: 0, to: 9 },
-      { label: 'fold in,\ntwo batches', from: 0, to: 10 },
-      { label: 'waffle iron\n4–5 min until\ndeep golden', from: 0, to: 10 },
+      { label: 'whisk', from: 5, to: 8 },
+      { label: 'beat to\nsoft peaks', from: 9, to: 9 },
+      { label: 'stir together\njust until combined', from: 0, to: 8 },
+      { label: 'fold in,\ntwo batches', from: 0, to: 9 },
+      { label: 'waffle iron\n4–5 min until\ndeep golden', from: 0, to: 9 },
     ],
     steps: [
       'Preheat your waffle iron according to the manufacturer instructions.',
-      'In a large bowl, whisk together the plain flour, baking powder, cinnamon, brown sugar, and salt.',
+      'In a large bowl, whisk together the plain flour, baking powder, cinnamon, and salt.',
       'In a medium bowl, combine mashed banana, egg yolks, milk, melted butter, and vanilla extract.',
       'In a separate clean bowl, beat the egg whites to soft peaks using a hand whisk or electric beaters.',
       'Stir the banana mixture into the dry ingredients until just combined. Gently fold in the whipped egg whites in two batches using a spatula.',
       'Lightly grease the waffle iron. Ladle in batter and cook for 4 to 5 minutes until deep golden and crisp.',
     ],
-    tips: ['The whipped whites are what make them fluffy — fold, do not stir.'],
+    tips: [
+      'The whipped whites are what make them fluffy — fold, do not stir.',
+      'No added sugar: the sweetness is all banana, so use a properly ripe one and let the syrup or fruit on top do the rest.',
+    ],
   },
 
   {
@@ -403,5 +407,88 @@ export const RECIPES = [
       'Brush with melted garlic butter and herbs immediately if desired.',
     ],
     tips: ['Use the thickest yoghurt you can find — runny yoghurt needs a lot more flour.'],
+  },
+
+  {
+    id: 'vitamix-hummus',
+    title: 'Vitamix Hummus',
+    blurb:
+      'Everything into the jug at once and blended smooth in a minute — the sesame seeds become the tahini as it goes.',
+    category: 'Snacks & Sides',
+    method: 'Vitamix',
+    appliance: 'Vitamix (Dips & Spreads)',
+    highlight: 'One jug, 60 seconds, completely smooth',
+    tags: ['easy', 'quick', 'vegetarian', 'vegan', 'gluten free', 'kid friendly'],
+    servings: 14,
+    servingNoun: 'servings',
+    prepMin: 10,
+    cookMin: 1,
+    ingredients: [
+      { text: '2 cans (850 g total) chickpeas, keeping the liquid from one can', short: '2 cans (850 g) chickpeas + liquid from one' },
+      { text: '1/4 cup (35 g) raw sesame seeds' },
+      { text: '2 tbsp (30 ml) extra virgin olive oil (optional)' },
+      { text: '1/2 lemon, peeled' },
+      { text: '1 clove garlic, peeled' },
+      { text: '1 tsp ground cumin' },
+      { text: '1/2 tsp salt (optional)' },
+    ],
+    prep: [],
+    grid: [
+      { label: 'into the container,\nin this order', from: 0, to: 6 },
+      { label: 'Dips & Spreads program\n(or lowest speed,\nquickly up to highest)', from: 0, to: 6 },
+      { label: 'blend 60 s,\ntamping down\nuntil smooth', from: 0, to: 6 },
+    ],
+    steps: [
+      'Place all ingredients into the Vitamix container in the order listed and secure the lid.',
+      'Run the Dips & Spreads Program, or start the blender on its lowest speed and quickly increase to its highest speed.',
+      'Blend for 60 seconds, using the tamper to push ingredients down toward the blades until completely smooth.',
+    ],
+    tips: ['Do not add too much garlic — one clove is plenty, and more takes the whole batch over.'],
+  },
+
+  {
+    id: 'zucchini-fritters',
+    title: 'Zucchini Fritters',
+    blurb:
+      'Herby little patties held together with one egg and a half cup of flour, crisp at the edges and soft in the middle.',
+    source: 'Healthy Little Foodies',
+    category: 'Snacks & Sides',
+    method: 'Stovetop',
+    appliance: 'Frying pan',
+    highlight: 'Lemon, mint and parsley, good warm or cold',
+    tags: ['kid friendly', 'easy', 'quick', 'vegetarian'],
+    servings: 8,
+    servingNoun: 'patties',
+    prepMin: 15,
+    cookMin: 12,
+    ingredients: [
+      { text: '500 g (approx. 3 medium) zucchini', short: '500 g (3 medium) zucchini' },
+      { text: '1/4 cup fresh parsley, finely chopped' },
+      { text: '1/4 cup fresh mint, finely chopped' },
+      { text: 'Zest of 1 lemon' },
+      { text: '1 large egg, whisked' },
+      { text: '65 g (1/2 cup) plain flour (or chickpea flour for gluten-free)', short: '65 g (1/2 cup) plain flour' },
+      { text: 'Optional: pinch of salt and black pepper (omit for babies and toddlers)', short: 'Optional: salt and pepper' },
+      { text: '1 tbsp avocado oil or olive oil, for frying' },
+    ],
+    prep: [],
+    grid: [
+      { label: 'grate, then squeeze dry\nin a tea towel', from: 0, to: 0 },
+      { label: 'combine', from: 0, to: 4 },
+      { label: 'sprinkle over and stir\nto a thick batter,\nthen season', from: 0, to: 6 },
+      { label: 'shape into 1/4-cup patties,\nabout 1 cm thick', from: 0, to: 6 },
+      { label: 'fry over medium heat,\n3 min a side\nuntil golden', from: 0, to: 7 },
+    ],
+    steps: [
+      'Prepare the zucchini: grate it using a box grater. Place the grated zucchini in a clean tea towel or nut milk bag and squeeze firmly to extract as much excess liquid as possible (this prevents the fritters from turning soggy).',
+      'Make the batter: in a large bowl, combine the squeezed zucchini, chopped parsley, mint, lemon zest, and whisked egg. Sprinkle the flour over the top and stir until just incorporated into a thick batter. Season to taste if desired.',
+      'Shape: scoop 1/4-cup portions of the mixture and gently shape into patties roughly 1 cm thick.',
+      'Fry: heat 1 tablespoon of oil in a large frying pan over medium heat. Add the patties and cook for 3 minutes per side until golden brown and cooked through (adjust the heat if they are browning too quickly).',
+      'Serve: transfer to a plate lined with paper towel. Serve warm on their own or with a side of yoghurt or tzatziki.',
+    ],
+    tips: [
+      'Squeeze the zucchini harder than feels necessary — that is the whole difference between crisp and soggy.',
+      'Leave the salt out if the little ones are eating them.',
+    ],
   },
 ];
